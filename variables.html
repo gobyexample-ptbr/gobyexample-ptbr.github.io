@@ -27,9 +27,9 @@
         
         <tr>
           <td class="docs">
-            <p>In Go, <em>variables</em> are explicitly declared and used by
-the compiler to e.g. check type-correctness of function
-calls.</p>
+            <p>Em Go, <em>variáveis</em> são explicitamente declaradas e
+usadas pelo compilador. Por exemplo, verificar
+type-correctness de chamada de funções.</p>
 
           </td>
           <td class="code empty leading">
@@ -43,7 +43,7 @@ calls.</p>
             
           </td>
           <td class="code leading">
-            <a href="http://play.golang.org/p/iYyAIilyBRf"><img title="Executa o c&oacute;digo" src="play.png" class="run" /></a><img title="Copiar o c&oacute;digo" src="clipboard.png" class="copy" />
+            <a href="http://play.golang.org/p/o7rPAj8QOUv"><img title="Executa o c&oacute;digo" src="play.png" class="run" /></a><img title="Copiar o c&oacute;digo" src="clipboard.png" class="copy" />
           <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
 </pre>
           </td>
@@ -73,7 +73,7 @@ calls.</p>
         
         <tr>
           <td class="docs">
-            <p><code>var</code> declares 1 or more variables.</p>
+            <p><code>var</code> declara uma ou mais variáveis.</p>
 
           </td>
           <td class="code leading">
@@ -87,7 +87,7 @@ calls.</p>
         
         <tr>
           <td class="docs">
-            <p>You can declare multiple variables at once.</p>
+            <p>Você pode declarar múltiplas variáveis de uma vez só.</p>
 
           </td>
           <td class="code leading">
@@ -101,7 +101,7 @@ calls.</p>
         
         <tr>
           <td class="docs">
-            <p>Go will infer the type of initialized variables.</p>
+            <p>Go inferirá o tipo de variável inicializada.</p>
 
           </td>
           <td class="code leading">
@@ -115,15 +115,24 @@ calls.</p>
         
         <tr>
           <td class="docs">
-            <p>Variables declared without a corresponding
-initialization are <em>zero-valued</em>. For example, the
-zero value for an <code>int</code> is <code>0</code>.</p>
+            <p>As variáveis declaradas sem uma inicialização
+correspondente terão <em>valor zero</em>. Por exemplo,
+o valor zero para um <code>int</code> é <code>0</code>.</p>
 
+          </td>
+          <td class="code empty leading">
+            
+          
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
           </td>
           <td class="code leading">
             
-          <pre class="chroma">
-    <span class="kd">var</span> <span class="nx">e</span> <span class="kt">int</span>
+          <pre class="chroma">    <span class="kd">var</span> <span class="nx">e</span> <span class="kt">int</span>
     <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span>
 </pre>
           </td>
@@ -131,9 +140,9 @@ zero value for an <code>int</code> is <code>0</code>.</p>
         
         <tr>
           <td class="docs">
-            <p>The <code>:=</code> syntax is shorthand for declaring and
-initializing a variable, e.g. for
-<code>var f string = &quot;apple&quot;</code> in this case.</p>
+            <p>A sintaxe <code>:=</code> é uma abreviação para declarar
+e inicializar uma variável. Por exemplo,
+<code>var f string = &quot;apple&quot;</code>.</p>
 
           </td>
           <td class="code">
@@ -180,7 +189,7 @@ initializing a variable, e.g. for
     </div>
     <script>
       var codeLines = [];
-      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import \"fmt\"\u000A');codeLines.push('func main() {\u000A');codeLines.push('    var a \u003D \"initial\"\u000A    fmt.Println(a)\u000A');codeLines.push('    var b, c int \u003D 1, 2\u000A    fmt.Println(b, c)\u000A');codeLines.push('    var d \u003D true\u000A    fmt.Println(d)\u000A');codeLines.push('    var e int\u000A    fmt.Println(e)\u000A');codeLines.push('    f :\u003D \"apple\"\u000A    fmt.Println(f)\u000A}\u000A');codeLines.push('');
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import \"fmt\"\u000A');codeLines.push('func main() {\u000A');codeLines.push('    var a \u003D \"initial\"\u000A    fmt.Println(a)\u000A');codeLines.push('    var b, c int \u003D 1, 2\u000A    fmt.Println(b, c)\u000A');codeLines.push('    var d \u003D true\u000A    fmt.Println(d)\u000A');codeLines.push('');codeLines.push('    var e int\u000A    fmt.Println(e)\u000A');codeLines.push('    f :\u003D \"apple\"\u000A    fmt.Println(f)\u000A}\u000A');codeLines.push('');
     </script>
     <script src="site.js" async></script>
   </body>
