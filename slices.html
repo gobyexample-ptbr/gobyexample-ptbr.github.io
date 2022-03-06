@@ -24,8 +24,8 @@
         <tr>
           <td class="docs">
             <p><em>Slices</em> são um tipo de dados no Go, dando uma
-<code>interface</code> mais poderosa para sequências do
-que <code>array</code>.</p>
+<em>interface</em> mais poderosa para sequências do
+que <em>array</em>.</p>
 
           </td>
           <td class="code empty leading">
@@ -39,7 +39,7 @@ que <code>array</code>.</p>
             
           </td>
           <td class="code leading">
-            <a href="http://play.golang.org/p/DpWa2WhqLOo"><img title="Executa o c&oacute;digo" src="play.png" class="run" /></a><img title="Copiar o c&oacute;digo" src="clipboard.png" class="copy" />
+            <a href="http://play.golang.org/p/C5L7LbmaFcQ"><img title="Executa o c&oacute;digo" src="play.png" class="run" /></a><img title="Copiar o c&oacute;digo" src="clipboard.png" class="copy" />
           <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
 </pre>
           </td>
@@ -69,27 +69,18 @@ que <code>array</code>.</p>
         
         <tr>
           <td class="docs">
-            <p>Ao contrário dos <code>arrays</code>, os <code>slices</code> tem seus
+            <p>Ao contrário dos <em>arrays</em>, os <em>slices</em> tem seus
 tipos apenas pelos elementos que contêm (não pelo
-número de elementos). Para criar um <code>slice</code> vazio
+número de elementos). Para criar um <em>slice</em> vazio
 com comprimento diferente de zero, use construtor
-<code>make</code>. Aqui fazemos os <code>slices</code> de <code>string</code> de
+<em>make</em>. Aqui fazemos os <em>slices</em> de <em>string</em> de
 comprimento 3 (inicialmente com valor zero).</p>
 
           </td>
-          <td class="code empty leading">
-            
-          
-          </td>
-        </tr>
-        
-        <tr>
-          <td class="docs">
-            
-          </td>
           <td class="code leading">
             
-          <pre class="chroma">    <span class="nx">s</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">string</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+          <pre class="chroma">
+    <span class="nx">s</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">string</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
     <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;emp:&#34;</span><span class="p">,</span> <span class="nx">s</span><span class="p">)</span>
 </pre>
           </td>
@@ -97,7 +88,7 @@ comprimento 3 (inicialmente com valor zero).</p>
         
         <tr>
           <td class="docs">
-            <p>Podemos definir e obter exatamente como o <code>array</code>.</p>
+            <p>Podemos definir e obter exatamente como o <em>array</em>.</p>
 
           </td>
           <td class="code leading">
@@ -114,7 +105,7 @@ comprimento 3 (inicialmente com valor zero).</p>
         
         <tr>
           <td class="docs">
-            <p><code>len</code> retorna o tamanho do <code>slice</code>.</p>
+            <p><em>len</em> retorna o tamanho do <em>slice</em>.</p>
 
           </td>
           <td class="code leading">
@@ -127,12 +118,9 @@ comprimento 3 (inicialmente com valor zero).</p>
         
         <tr>
           <td class="docs">
-            <p>In addition to these basic operations, slices
-support several more that make them richer than
-arrays. One is the builtin <code>append</code>, which
-returns a slice containing one or more new values.
-Note that we need to accept a return value from
-<code>append</code> as we may get a new slice value.</p>
+            <p>Além dessas operações básicas, os <em>slices</em>
+suportam muito mais, o que os tornam mais
+rico do que o <em>array</em>.</p>
 
           </td>
           <td class="code empty leading">
@@ -143,29 +131,17 @@ Note that we need to accept a return value from
         
         <tr>
           <td class="docs">
-            <p>Além dessas operações básicas, os <code>slices</code>
-suportam muito mais, o que os tornam mais
-rico do que o <code>array</code>.
-Um deles é o <code>append</code>, que retorna um <code>slice</code>
+            <p>Um deles é o <em>append</em>, que retorna um <em>slice</em>
 contendo um ou mais novos valores. Observe que
 precisamos aceitar um valor de retorno do
-<code>append</code>, bem como podemos obter um novo valor
-do <code>slice</code>.</p>
+<em>append</em>, bem como podemos obter um novo valor
+do <em>slice</em>.</p>
 
-          </td>
-          <td class="code empty leading">
-            
-          
-          </td>
-        </tr>
-        
-        <tr>
-          <td class="docs">
-            
           </td>
           <td class="code leading">
             
-          <pre class="chroma">    <span class="nx">s</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="s">&#34;d&#34;</span><span class="p">)</span>
+          <pre class="chroma">
+    <span class="nx">s</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="s">&#34;d&#34;</span><span class="p">)</span>
     <span class="nx">s</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="s">&#34;e&#34;</span><span class="p">,</span> <span class="s">&#34;f&#34;</span><span class="p">)</span>
     <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;apd:&#34;</span><span class="p">,</span> <span class="nx">s</span><span class="p">)</span>
 </pre>
@@ -174,9 +150,9 @@ do <code>slice</code>.</p>
         
         <tr>
           <td class="docs">
-            <p><code>Sllices</code> também podem ser copiadas. Aqui criamos
-um <code>slice</code> vazio <code>c</code> do mesmo comprimento que <code>s</code>
-e copiamos para <code>c</code> o <code>s</code>.</p>
+            <p><em>Slices</em> também podem ser copiadas. Aqui criamos
+um <em>slice</em> vazio <em>c</em> do mesmo comprimento que <em>s</em>
+e copiamos para <em>c</em> o <em>s</em>.</p>
 
           </td>
           <td class="code leading">
@@ -191,9 +167,9 @@ e copiamos para <code>c</code> o <code>s</code>.</p>
         
         <tr>
           <td class="docs">
-            <p><code>Slices</code> suportam um operador “slice” com a
-sintaxe <code>slice[low:high]</code>. Por exemplo, isso obtém
-um <code>slice</code> dos elementos s[2], s[3] e s[4].</p>
+            <p><em>Slices</em> suportam um operador <em>slice</em> com a
+sintaxe <em>slice[low:high]</em>. Por exemplo, isso obtém
+um <em>slice</em> dos elementos s[2], s[3] e s[4].</p>
 
           </td>
           <td class="code leading">
@@ -207,7 +183,7 @@ um <code>slice</code> dos elementos s[2], s[3] e s[4].</p>
         
         <tr>
           <td class="docs">
-            <p>Esse <code>slice</code> corta até (excluindo) <code>s[5]</code>.</p>
+            <p>Esse <em>slice</em> corta até (excluindo) <em>s[5]</em>.</p>
 
           </td>
           <td class="code leading">
@@ -221,7 +197,7 @@ um <code>slice</code> dos elementos s[2], s[3] e s[4].</p>
         
         <tr>
           <td class="docs">
-            <p>E esse <code>slice</code> parte de (incluindo) <code>s[2]</code>.</p>
+            <p>E esse <em>slice</em> parte de (incluindo) <em>s[2]</em>.</p>
 
           </td>
           <td class="code leading">
@@ -236,7 +212,7 @@ um <code>slice</code> dos elementos s[2], s[3] e s[4].</p>
         <tr>
           <td class="docs">
             <p>Também podemos declarar e inicializar uma variável
-<code>slice</code> em uma única linha.</p>
+<em>slice</em> em uma única linha.</p>
 
           </td>
           <td class="code leading">
@@ -250,10 +226,10 @@ um <code>slice</code> dos elementos s[2], s[3] e s[4].</p>
         
         <tr>
           <td class="docs">
-            <p><code>Slices</code> podem ser compostos em estruturas de
+            <p><em>Slices</em> podem ser compostos em estruturas de
 dados multidimensionais. O comprimento dos
-<code>slices</code> internos pode variar, ao contrário dos
-<code>array</code> multidimensionais.</p>
+<em>slices</em> internos pode variar, ao contrário dos
+<em>array</em> multidimensionais.</p>
 
           </td>
           <td class="code">
@@ -338,7 +314,7 @@ estrutura de dados integrada do Go: mapas.</p>
     </div>
     <script>
       var codeLines = [];
-      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import \"fmt\"\u000A');codeLines.push('func main() {\u000A');codeLines.push('');codeLines.push('    s :\u003D make([]string, 3)\u000A    fmt.Println(\"emp:\", s)\u000A');codeLines.push('    s[0] \u003D \"a\"\u000A    s[1] \u003D \"b\"\u000A    s[2] \u003D \"c\"\u000A    fmt.Println(\"seet\", s)\u000A    fmt.Println(\"get:\", s[2])\u000A');codeLines.push('    fmt.Println(\"len:\", len(s))\u000A');codeLines.push('');codeLines.push('');codeLines.push('    s \u003D append(s, \"d\")\u000A    s \u003D append(s, \"e\", \"f\")\u000A    fmt.Println(\"apd:\", s)\u000A');codeLines.push('    c :\u003D make([]string, len(s))\u000A    copy(c, s)\u000A    fmt.Println(\"cpy:\", c)\u000A');codeLines.push('    l :\u003D s[2:5]\u000A    fmt.Println(\"sl1:\", l)\u000A');codeLines.push('    l \u003D s[:5]\u000A    fmt.Println(\"sl2:\", l)\u000A');codeLines.push('    l \u003D s[2:]\u000A    fmt.Println(\"sl3:\", l)\u000A');codeLines.push('    t :\u003D []string{\"g\", \"h\", \"i\"}\u000A    fmt.Println(\"dcl:\", t)\u000A');codeLines.push('    twoD :\u003D make([][]int, 3)\u000A    for i :\u003D 0; i \u003C 3; i++ {\u000A        innerLen :\u003D i + 1\u000A        twoD[i] \u003D make([]int, innerLen)\u000A        for j :\u003D 0; j \u003C innerLen; j++ {\u000A            twoD[i][j] \u003D i + j\u000A        }\u000A    }\u000A    fmt.Println(\"2d: \", twoD)\u000A}\u000A');codeLines.push('');codeLines.push('');codeLines.push('');
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import \"fmt\"\u000A');codeLines.push('func main() {\u000A');codeLines.push('    s :\u003D make([]string, 3)\u000A    fmt.Println(\"emp:\", s)\u000A');codeLines.push('    s[0] \u003D \"a\"\u000A    s[1] \u003D \"b\"\u000A    s[2] \u003D \"c\"\u000A    fmt.Println(\"seet\", s)\u000A    fmt.Println(\"get:\", s[2])\u000A');codeLines.push('    fmt.Println(\"len:\", len(s))\u000A');codeLines.push('');codeLines.push('    s \u003D append(s, \"d\")\u000A    s \u003D append(s, \"e\", \"f\")\u000A    fmt.Println(\"apd:\", s)\u000A');codeLines.push('    c :\u003D make([]string, len(s))\u000A    copy(c, s)\u000A    fmt.Println(\"cpy:\", c)\u000A');codeLines.push('    l :\u003D s[2:5]\u000A    fmt.Println(\"sl1:\", l)\u000A');codeLines.push('    l \u003D s[:5]\u000A    fmt.Println(\"sl2:\", l)\u000A');codeLines.push('    l \u003D s[2:]\u000A    fmt.Println(\"sl3:\", l)\u000A');codeLines.push('    t :\u003D []string{\"g\", \"h\", \"i\"}\u000A    fmt.Println(\"dcl:\", t)\u000A');codeLines.push('    twoD :\u003D make([][]int, 3)\u000A    for i :\u003D 0; i \u003C 3; i++ {\u000A        innerLen :\u003D i + 1\u000A        twoD[i] \u003D make([]int, innerLen)\u000A        for j :\u003D 0; j \u003C innerLen; j++ {\u000A            twoD[i][j] \u003D i + j\u000A        }\u000A    }\u000A    fmt.Println(\"2d: \", twoD)\u000A}\u000A');codeLines.push('');codeLines.push('');codeLines.push('');
     </script>
     <script src="site.js" async></script>
   </body>
