@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Go por Exemplo: Funções</title>
+    <link rel=stylesheet href="site.css">
+  </head>
+  <script>
+      onkeydown = (e) => {
+          
+          if (e.key == "ArrowLeft") {
+              window.location.href = 'range.html';
+          }
+          
+          
+      }
+  </script>
+  <body>
+    <div class="example" id="funcoes">
+      <h2><a href="./">Go por Exemplo</a>: Funções</h2>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p>As funções são centrais no Go. Aprenderemos sobre as
+funções com alguns exemplos diferentes.</p>
+
+          </td>
+          <td class="code empty leading">
+            
+          
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            <a href="http://play.golang.org/p/YU3fvJKznyX"><img title="Executa o c&oacute;digo" src="play.png" class="run" /></a><img title="Copiar o c&oacute;digo" src="clipboard.png" class="copy" />
+          <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Aqui está uma função que pega dois <code>int</code> e retorna
+sua soma como um inteiro.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+<span class="kd">func</span> <span class="nf">plus</span><span class="p">(</span><span class="nx">a</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">b</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Go requer retornos explícitos, ou seja, não
+retornará automaticamente o valor da última
+expressão.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Quando você tem vários parâmetros consecutivos do
+mesmo tipo, você pode omitir o nome do tipo para
+os parâmetros com tipo semelhante até o parâmetro
+final que declara o tipo.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+<span class="kd">func</span> <span class="nf">plusPlus</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span> <span class="o">+</span> <span class="nx">c</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Chame uma função exatamente como esperado, com
+nome(argumentos).</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">res</span> <span class="o">:=</span> <span class="nf">plus</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;1+2 =&#34;</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code">
+            
+          <pre class="chroma">    <span class="nx">res</span> <span class="p">=</span> <span class="nf">plusPlus</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;1+2+3 =&#34;</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="gp">$</span> go run funcoes.go 
+<span class="go">1+2 = 3
+</span><span class="go">1+2+3 = 6</span></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Existem vários outros recursos para as funções Go. Um
+deles são os múltiplos valores de retorno, que veremos
+a seguir.</p>
+
+          </td>
+          <td class="code empty">
+            
+          
+          </td>
+        </tr>
+        
+      </table>
+      
+      
+
+    <p class="footer">
+      por <a href="https://markmcgranaghan.com">Mark McGranaghan</a> e <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/MrErlison/gobyexample-ptbr">c&oacute;digo-fonte</a> | <a href="https://github.com/MrErlison/gobyexample-ptbr#license">licen&ccedil;a</a>
+    </p>
+
+    </div>
+    <script>
+      var codeLines = [];
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import \"fmt\"\u000A');codeLines.push('func plus(a int, b int) int {\u000A');codeLines.push('    return a + b\u000A}\u000A');codeLines.push('func plusPlus(a, b, c int) int {\u000A    return a + b + c\u000A}\u000A');codeLines.push('func main() {\u000A');codeLines.push('    res :\u003D plus(1, 2)\u000A    fmt.Println(\"1+2 \u003D\", res)\u000A');codeLines.push('    res \u003D plusPlus(1, 2, 3)\u000A    fmt.Println(\"1+2+3 \u003D\", res)\u000A}\u000A');codeLines.push('');codeLines.push('');
+    </script>
+    <script src="site.js" async></script>
+  </body>
+</html>
