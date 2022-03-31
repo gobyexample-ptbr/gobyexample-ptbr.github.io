@@ -19,6 +19,167 @@
     <div class="example" id="metodos">
       <h2><a href="./">Go por Exemplo</a>: Métodos</h2>
       
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p>Go suporta <em>métodos</em> definidos em tipos de estrutura..</p>
+
+          </td>
+          <td class="code empty leading">
+            
+          
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            <a href="http://play.golang.org/p/rIqRqnI2K-4"><img title="Executa o c&oacute;digo" src="play.png" class="run" /></a><img title="Copiar o c&oacute;digo" src="clipboard.png" class="copy" />
+          <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kd">type</span> <span class="nx">retangulo</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">largura</span><span class="p">,</span> <span class="nx">altura</span> <span class="kt">int</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>This <code>area</code> method has a <em>receiver type</em> of
+<code>*retangulo</code>. Este método de <code>area</code> tem um <em>tipo de
+receptor</em> de <code>*retangulo</code>.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+<span class="kd">func</span> <span class="p">(</span><span class="nx">r</span> <span class="o">*</span><span class="nx">retangulo</span><span class="p">)</span> <span class="nf">area</span><span class="p">()</span> <span class="kt">int</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">r</span><span class="p">.</span><span class="nx">largura</span> <span class="o">*</span> <span class="nx">r</span><span class="p">.</span><span class="nx">altura</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Os métodos podem ser definidos para receptores do
+tipo de ponteiro ou de valor. Aqui está um exemplo
+de um receptor de valor.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+<span class="kd">func</span> <span class="p">(</span><span class="nx">r</span> <span class="nx">retangulo</span><span class="p">)</span> <span class="nf">perimetro</span><span class="p">()</span> <span class="kt">int</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="nx">r</span><span class="p">.</span><span class="nx">largura</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="nx">r</span><span class="p">.</span><span class="nx">altura</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">r</span> <span class="o">:=</span> <span class="nx">retangulo</span><span class="p">{</span><span class="nx">largura</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="nx">altura</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Aqui chamamos os dois métodos definidos para a
+nossa estrutura.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;area: &#34;</span><span class="p">,</span> <span class="nx">r</span><span class="p">.</span><span class="nf">area</span><span class="p">())</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;perimetro:&#34;</span><span class="p">,</span> <span class="nx">r</span><span class="p">.</span><span class="nf">perimetro</span><span class="p">())</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Go lida automaticamente com a conversão entre
+valores e ponteiros para chamadas de método. Você
+pode querer usar um tipo de receptor de ponteiro
+para evitar copiar chamadas de método ou para
+permitir que o método mude a estrutura receptora.</p>
+
+          </td>
+          <td class="code">
+            
+          <pre class="chroma">
+    <span class="nx">rp</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">r</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;area: &#34;</span><span class="p">,</span> <span class="nx">rp</span><span class="p">.</span><span class="nf">area</span><span class="p">())</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;perimetro:&#34;</span><span class="p">,</span> <span class="nx">rp</span><span class="p">.</span><span class="nf">perimetro</span><span class="p">())</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="gp">$</span> go run metodos.go 
+<span class="go">area:  50
+</span><span class="go">perimetro: 30
+</span><span class="go">area:  50
+</span><span class="go">perimetro: 30</span></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Em seguida, veremos o mecanismo do Go para agrupar e
+nomear conjuntos de métodos relacionados: interfaces.</p>
+
+          </td>
+          <td class="code empty">
+            
+          
+          </td>
+        </tr>
+        
+      </table>
+      
       
 
     <p class="footer">
@@ -28,7 +189,7 @@
     </div>
     <script>
       var codeLines = [];
-      
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import \"fmt\"\u000A');codeLines.push('type retangulo struct {\u000A    largura, altura int\u000A}\u000A');codeLines.push('func (r *retangulo) area() int {\u000A    return r.largura * r.altura\u000A}\u000A');codeLines.push('func (r retangulo) perimetro() int {\u000A    return 2*r.largura + 2*r.altura\u000A}\u000A');codeLines.push('func main() {\u000A    r :\u003D retangulo{largura: 10, altura: 5}\u000A');codeLines.push('    fmt.Println(\"area: \", r.area())\u000A    fmt.Println(\"perimetro:\", r.perimetro())\u000A');codeLines.push('    rp :\u003D \u0026r\u000A    fmt.Println(\"area: \", rp.area())\u000A    fmt.Println(\"perimetro:\", rp.perimetro())\u000A}\u000A');codeLines.push('');codeLines.push('');
     </script>
     <script src="site.js" async></script>
   </body>
