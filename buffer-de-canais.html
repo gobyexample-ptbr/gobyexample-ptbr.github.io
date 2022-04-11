@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Go por Exemplos: Buffer de canais</title>
+    <link rel=stylesheet href="site.css">
+  </head>
+  <script>
+      onkeydown = (e) => {
+          
+          if (e.key == "ArrowLeft") {
+              window.location.href = 'canais.html';
+          }
+          
+          
+      }
+  </script>
+  <body>
+    <div class="example" id="buffer-de-canais">
+      <h2><a href="./">Go por Exemplos</a>: Buffer de canais</h2>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p>Por padrão, os canais não são armazenados em <em>buffer</em>,
+o que significa que eles só aceitarão envios
+(<code>chan &lt;-</code>) se houver um recebimento correspondente
+(<code>&lt;- chan</code>) pronto para receber o valor enviado.
+Os canais em buffer aceitam um número limitado de
+valores sem um receptor correspondente para esses
+valores.</p>
+
+          </td>
+          <td class="code empty leading">
+            
+          
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            <a href="http://play.golang.org/p/EHEPbtx08VL"><img title="Executa o c&oacute;digo" src="play.png" class="run" /></a><img title="Copiar o c&oacute;digo" src="clipboard.png" class="copy" />
+          <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Aqui fazemos <code>make</code> um canal de <code>strings</code> em
+buffer de até 2 valores.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">messages</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Como esse canal está armazenado em buffer,
+podemos enviar esses valores para o canal
+sem um recebimento simultâneo correspondente.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">messages</span> <span class="o">&lt;-</span> <span class="s">&#34;armazenado&#34;</span>
+    <span class="nx">messages</span> <span class="o">&lt;-</span> <span class="s">&#34;canal&#34;</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Mais tarde, podemos receber esses dois valores
+como de costume.</p>
+
+          </td>
+          <td class="code">
+            
+          <pre class="chroma">
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="o">&lt;-</span><span class="nx">messages</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="o">&lt;-</span><span class="nx">messages</span><span class="p">)</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code">
+            
+          <pre class="chroma"><span class="gp">$</span> go run buffer-de-canais.go 
+<span class="go">armazenado
+</span><span class="go">canal</span></pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      
+
+    <p class="footer">
+      por <a href="https://markmcgranaghan.com">Mark McGranaghan</a> e <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/MrErlison/goporexemplos">c&oacute;digo-fonte</a> | <a href="https://github.com/MrErlison/goporexemplos#license">licen&ccedil;a</a>
+    </p>
+
+    </div>
+    <script>
+      var codeLines = [];
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import \"fmt\"\u000A');codeLines.push('func main() {\u000A');codeLines.push('    messages :\u003D make(chan string, 2)\u000A');codeLines.push('    messages \u003C- \"armazenado\"\u000A    messages \u003C- \"canal\"\u000A');codeLines.push('    fmt.Println(\u003C-messages)\u000A    fmt.Println(\u003C-messages)\u000A}\u000A');codeLines.push('');
+    </script>
+    <script src="site.js" async></script>
+  </body>
+</html>
