@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Go por Exemplos: Range over Channels</title>
+    <title>Go por Exemplos: Intervalo sobre canais</title>
     <link rel=stylesheet href="site.css">
   </head>
   <script>
@@ -16,8 +16,8 @@
       }
   </script>
   <body>
-    <div class="example" id="range-over-channels">
-      <h2><a href="./">Go por Exemplos</a>: Range over Channels</h2>
+    <div class="example" id="intervalo-sobre-canais">
+      <h2><a href="./">Go por Exemplos</a>: Intervalo sobre canais</h2>
       
       <table>
         
@@ -30,7 +30,7 @@ para iterar sobre os valores recebidos de um canal.</p>
 
           </td>
           <td class="code leading">
-            <a href="http://play.golang.org/p/YMsefqIw0Gr"><img title="Executa o c&oacute;digo" src="play.png" class="run" /></a><img title="Copiar o c&oacute;digo" src="clipboard.png" class="copy" />
+            <a href="http://play.golang.org/p/kmidKklYzcy"><img title="Executa o c&oacute;digo" src="play.png" class="run" /></a><img title="Copiar o c&oacute;digo" src="clipboard.png" class="copy" />
           <pre class="chroma">
 <span class="kn">package</span> <span class="nx">main</span>
 </pre>
@@ -61,8 +61,8 @@ para iterar sobre os valores recebidos de um canal.</p>
         
         <tr>
           <td class="docs">
-            <p>We&rsquo;ll iterate over 2 values in the <code>queue</code> channel.
-Vamos iterar mais de 2 valores na file do canal.</p>
+            <p>Vamos iteraragir com mais de dois valores na
+fila do canal.</p>
 
           </td>
           <td class="code leading">
@@ -78,11 +78,10 @@ Vamos iterar mais de 2 valores na file do canal.</p>
         
         <tr>
           <td class="docs">
-            <p>This <code>range</code> iterates over each element as it&rsquo;s
-received from <code>queue</code>. Because we <code>close</code>d the
-channel above, the iteration terminates after
-receiving the 2 elements.
-Esse intervalo itera sobre cada elemento à medida que é recebido da fila. Como fechamos o canal acima, a iteração termina depois de receber os 2 elementos.</p>
+            <p>Esse <code>range</code> iterage sobre cada elemento à medida
+que é recebido da fila <code>queue</code>. Como fechamos o
+canal acima, a iteração termina depois de receber
+os dois elementos.</p>
 
           </td>
           <td class="code">
@@ -106,7 +105,7 @@ Esse intervalo itera sobre cada elemento à medida que é recebido da fila. Como
           </td>
           <td class="code leading">
             
-          <pre class="chroma"><span class="gp">$</span> go run range-over-channels.go
+          <pre class="chroma"><span class="gp">$</span> go run intervalo-sobre-canais.go
 <span class="go">um
 </span><span class="go">dois</span></pre>
           </td>
