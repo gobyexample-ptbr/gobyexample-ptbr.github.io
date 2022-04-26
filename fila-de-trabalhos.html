@@ -27,19 +27,10 @@
 de trabalhas usando goroutines e canais.</p>
 
           </td>
-          <td class="code empty leading">
-            
-          
-          </td>
-        </tr>
-        
-        <tr>
-          <td class="docs">
-            
-          </td>
           <td class="code leading">
-            <a href="http://play.golang.org/p/MP4GPtK2Ao0"><img title="Executa o c&oacute;digo" src="play.png" class="run" /></a><img title="Copiar o c&oacute;digo" src="clipboard.png" class="copy" />
-          <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
+            <a href="http://play.golang.org/p/R0QcViiK-mq"><img title="Executa o c&oacute;digo" src="play.png" class="run" /></a><img title="Copiar o c&oacute;digo" src="clipboard.png" class="copy" />
+          <pre class="chroma">
+<span class="kn">package</span> <span class="nx">main</span>
 </pre>
           </td>
         </tr>
@@ -67,19 +58,10 @@ correspondentes em <code>results</code>. Aguardaremos um segundo
 por trabalho para simular uma tarefa dispendiosa.</p>
 
           </td>
-          <td class="code empty leading">
-            
-          
-          </td>
-        </tr>
-        
-        <tr>
-          <td class="docs">
-            
-          </td>
           <td class="code leading">
             
-          <pre class="chroma"><span class="kd">func</span> <span class="nf">worker</span><span class="p">(</span><span class="nx">id</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">jobs</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">results</span> <span class="kd">chan</span><span class="o">&lt;-</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+          <pre class="chroma">
+<span class="kd">func</span> <span class="nf">worker</span><span class="p">(</span><span class="nx">id</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">jobs</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">results</span> <span class="kd">chan</span><span class="o">&lt;-</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">for</span> <span class="nx">j</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">jobs</span> <span class="p">{</span>
         <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;worker&#34;</span><span class="p">,</span> <span class="nx">id</span><span class="p">,</span> <span class="s">&#34;started  job&#34;</span><span class="p">,</span> <span class="nx">j</span><span class="p">)</span>
         <span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
@@ -109,19 +91,10 @@ enviar o trabalho e coletar seus resultados. Criamos
 2 canais para isso.</p>
 
           </td>
-          <td class="code empty leading">
-            
-          
-          </td>
-        </tr>
-        
-        <tr>
-          <td class="docs">
-            
-          </td>
           <td class="code leading">
             
-          <pre class="chroma">    <span class="kd">const</span> <span class="nx">numJobs</span> <span class="p">=</span> <span class="mi">5</span>
+          <pre class="chroma">
+    <span class="kd">const</span> <span class="nx">numJobs</span> <span class="p">=</span> <span class="mi">5</span>
     <span class="nx">jobs</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">numJobs</span><span class="p">)</span>
     <span class="nx">results</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">numJobs</span><span class="p">)</span>
 </pre>
@@ -134,19 +107,10 @@ enviar o trabalho e coletar seus resultados. Criamos
 porque ainda não há nenhum <code>job</code>.</p>
 
           </td>
-          <td class="code empty leading">
-            
-          
-          </td>
-        </tr>
-        
-        <tr>
-          <td class="docs">
-            
-          </td>
           <td class="code leading">
             
-          <pre class="chroma">    <span class="k">for</span> <span class="nx">w</span> <span class="o">:=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">w</span> <span class="o">&lt;=</span> <span class="mi">3</span><span class="p">;</span> <span class="nx">w</span><span class="o">++</span> <span class="p">{</span>
+          <pre class="chroma">
+    <span class="k">for</span> <span class="nx">w</span> <span class="o">:=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">w</span> <span class="o">&lt;=</span> <span class="mi">3</span><span class="p">;</span> <span class="nx">w</span><span class="o">++</span> <span class="p">{</span>
         <span class="k">go</span> <span class="nf">worker</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">jobs</span><span class="p">,</span> <span class="nx">results</span><span class="p">)</span>
     <span class="p">}</span>
 </pre>
@@ -160,19 +124,10 @@ canal para indicar que esse é todo o trabalho
 que temos.</p>
 
           </td>
-          <td class="code empty leading">
-            
-          
-          </td>
-        </tr>
-        
-        <tr>
-          <td class="docs">
-            
-          </td>
           <td class="code leading">
             
-          <pre class="chroma">    <span class="k">for</span> <span class="nx">j</span> <span class="o">:=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;=</span> <span class="nx">numJobs</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span> <span class="p">{</span>
+          <pre class="chroma">
+    <span class="k">for</span> <span class="nx">j</span> <span class="o">:=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;=</span> <span class="nx">numJobs</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span> <span class="p">{</span>
         <span class="nx">jobs</span> <span class="o">&lt;-</span> <span class="nx">j</span>
     <span class="p">}</span>
     <span class="nb">close</span><span class="p">(</span><span class="nx">jobs</span><span class="p">)</span>
@@ -188,19 +143,10 @@ trabalho. Isso também garante que as rotinas do
 esperar por várias goroutines é usar um WaitGroup.</p>
 
           </td>
-          <td class="code empty leading">
-            
-          
-          </td>
-        </tr>
-        
-        <tr>
-          <td class="docs">
-            
-          </td>
           <td class="code">
             
-          <pre class="chroma">    <span class="k">for</span> <span class="nx">a</span> <span class="o">:=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">a</span> <span class="o">&lt;=</span> <span class="nx">numJobs</span><span class="p">;</span> <span class="nx">a</span><span class="o">++</span> <span class="p">{</span>
+          <pre class="chroma">
+    <span class="k">for</span> <span class="nx">a</span> <span class="o">:=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">a</span> <span class="o">&lt;=</span> <span class="nx">numJobs</span><span class="p">;</span> <span class="nx">a</span><span class="o">++</span> <span class="p">{</span>
         <span class="o">&lt;-</span><span class="nx">results</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -259,7 +205,7 @@ simultaneamente.</p>
     </div>
     <script>
       var codeLines = [];
-      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import (\u000A    \"fmt\"\u000A    \"time\"\u000A)\u000A');codeLines.push('');codeLines.push('func worker(id int, jobs \u003C-chan int, results chan\u003C- int) {\u000A    for j :\u003D range jobs {\u000A        fmt.Println(\"worker\", id, \"started  job\", j)\u000A        time.Sleep(time.Second)\u000A        fmt.Println(\"worker\", id, \"finished job\", j)\u000A        results \u003C- j * 2\u000A    }\u000A}\u000A');codeLines.push('func main() {\u000A');codeLines.push('');codeLines.push('    const numJobs \u003D 5\u000A    jobs :\u003D make(chan int, numJobs)\u000A    results :\u003D make(chan int, numJobs)\u000A');codeLines.push('');codeLines.push('    for w :\u003D 1; w \u003C\u003D 3; w++ {\u000A        go worker(w, jobs, results)\u000A    }\u000A');codeLines.push('');codeLines.push('    for j :\u003D 1; j \u003C\u003D numJobs; j++ {\u000A        jobs \u003C- j\u000A    }\u000A    close(jobs)\u000A');codeLines.push('');codeLines.push('    for a :\u003D 1; a \u003C\u003D numJobs; a++ {\u000A        \u003C-results\u000A    }\u000A}\u000A');codeLines.push('');codeLines.push('');
+      codeLines.push('package main\u000A');codeLines.push('import (\u000A    \"fmt\"\u000A    \"time\"\u000A)\u000A');codeLines.push('func worker(id int, jobs \u003C-chan int, results chan\u003C- int) {\u000A    for j :\u003D range jobs {\u000A        fmt.Println(\"worker\", id, \"started  job\", j)\u000A        time.Sleep(time.Second)\u000A        fmt.Println(\"worker\", id, \"finished job\", j)\u000A        results \u003C- j * 2\u000A    }\u000A}\u000A');codeLines.push('func main() {\u000A');codeLines.push('    const numJobs \u003D 5\u000A    jobs :\u003D make(chan int, numJobs)\u000A    results :\u003D make(chan int, numJobs)\u000A');codeLines.push('    for w :\u003D 1; w \u003C\u003D 3; w++ {\u000A        go worker(w, jobs, results)\u000A    }\u000A');codeLines.push('    for j :\u003D 1; j \u003C\u003D numJobs; j++ {\u000A        jobs \u003C- j\u000A    }\u000A    close(jobs)\u000A');codeLines.push('    for a :\u003D 1; a \u003C\u003D numJobs; a++ {\u000A        \u003C-results\u000A    }\u000A}\u000A');codeLines.push('');codeLines.push('');
     </script>
     <script src="site.js" async></script>
   </body>
