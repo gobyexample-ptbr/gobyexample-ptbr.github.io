@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Go por Exemplos: Generics</title>
+    <link rel=stylesheet href="site.css">
+  </head>
+  <script>
+      onkeydown = (e) => {
+          
+          if (e.key == "ArrowLeft") {
+              window.location.href = 'incorporando.html';
+          }
+          
+          
+          if (e.key == "ArrowRight") {
+              window.location.href = 'erros.html';
+          }
+          
+      }
+  </script>
+  <body>
+    <div class="example" id="generics">
+      <h2><a href="./">Go por Exemplos</a>: Generics</h2>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p>A partir da versão 1.18, a linguagem Go adicionou
+suporte para <em>genéricos</em>, também conhecidos como
+<em>parâmetros de tipo</em>.</p>
+
+          </td>
+          <td class="code empty leading">
+            
+          
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            <a href="http://play.golang.org/p/lWrZvqMwZ5J"><img title="Executa o c&oacute;digo" src="play.png" class="run" /></a><img title="Copiar o c&oacute;digo" src="clipboard.png" class="copy" />
+          <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Como exemplo de uma função genérica, o <code>MapKeys</code> pega
+um <code>map</code> de qualquer tipo e retorna um <code>slice</code> de
+chaves. Esta função tem dois parâmetros de tipo - <code>K</code>
+e <code>V</code>; <code>K</code> é comparável a uma constante, o que
+significa que podemos comparar valores desse tipo com
+os operadores <code>==</code> e <code>!=</code>. Isso é necessário para o
+<code>map</code> de chaves em Go. <code>V</code> tem a constante <code>any</code>, o
+que significa que não é restrito de forma alguma
+(<code>any</code> é um alias para <code>interface{}</code>).</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+<span class="kd">func</span> <span class="nx">MapKeys</span><span class="p">[</span><span class="nx">K</span> <span class="nx">comparable</span><span class="p">,</span> <span class="nx">V</span> <span class="nx">any</span><span class="p">](</span><span class="nx">m</span> <span class="kd">map</span><span class="p">[</span><span class="nx">K</span><span class="p">]</span><span class="nx">V</span><span class="p">)</span> <span class="p">[]</span><span class="nx">K</span> <span class="p">{</span>
+    <span class="nx">r</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="nx">K</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">m</span><span class="p">))</span>
+    <span class="k">for</span> <span class="nx">k</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">m</span> <span class="p">{</span>
+        <span class="nx">r</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">r</span><span class="p">,</span> <span class="nx">k</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">r</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Como exemplo de um tipo <em>genérico</em>, <code>List</code> é uma lista
+vinculada individualmente com valores de qualquer tipo.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+<span class="kd">type</span> <span class="nx">List</span><span class="p">[</span><span class="nx">T</span> <span class="nx">any</span><span class="p">]</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">head</span><span class="p">,</span> <span class="nx">tail</span> <span class="o">*</span><span class="nx">element</span><span class="p">[</span><span class="nx">T</span><span class="p">]</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kd">type</span> <span class="nx">element</span><span class="p">[</span><span class="nx">T</span> <span class="nx">any</span><span class="p">]</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">next</span> <span class="o">*</span><span class="nx">element</span><span class="p">[</span><span class="nx">T</span><span class="p">]</span>
+    <span class="nx">val</span>  <span class="nx">T</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Podemos definir métodos em tipos genéricos, assim como
+fazemos em tipos regulares, mas temos que manter os
+parâmetros de tipo no lugar. O tipo é <code>List[T]</code>,
+não <code>List</code>.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+<span class="kd">func</span> <span class="p">(</span><span class="nx">lst</span> <span class="o">*</span><span class="nx">List</span><span class="p">[</span><span class="nx">T</span><span class="p">])</span> <span class="nf">Push</span><span class="p">(</span><span class="nx">v</span> <span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="nx">lst</span><span class="p">.</span><span class="nx">tail</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nx">lst</span><span class="p">.</span><span class="nx">head</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">element</span><span class="p">[</span><span class="nx">T</span><span class="p">]{</span><span class="nx">val</span><span class="p">:</span> <span class="nx">v</span><span class="p">}</span>
+        <span class="nx">lst</span><span class="p">.</span><span class="nx">tail</span> <span class="p">=</span> <span class="nx">lst</span><span class="p">.</span><span class="nx">head</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">lst</span><span class="p">.</span><span class="nx">tail</span><span class="p">.</span><span class="nx">next</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">element</span><span class="p">[</span><span class="nx">T</span><span class="p">]{</span><span class="nx">val</span><span class="p">:</span> <span class="nx">v</span><span class="p">}</span>
+        <span class="nx">lst</span><span class="p">.</span><span class="nx">tail</span> <span class="p">=</span> <span class="nx">lst</span><span class="p">.</span><span class="nx">tail</span><span class="p">.</span><span class="nx">next</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">lst</span> <span class="o">*</span><span class="nx">List</span><span class="p">[</span><span class="nx">T</span><span class="p">])</span> <span class="nf">GetAll</span><span class="p">()</span> <span class="p">[]</span><span class="nx">T</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">elems</span> <span class="p">[]</span><span class="nx">T</span>
+    <span class="k">for</span> <span class="nx">e</span> <span class="o">:=</span> <span class="nx">lst</span><span class="p">.</span><span class="nx">head</span><span class="p">;</span> <span class="nx">e</span> <span class="o">!=</span> <span class="kc">nil</span><span class="p">;</span> <span class="nx">e</span> <span class="p">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">next</span> <span class="p">{</span>
+        <span class="nx">elems</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">elems</span><span class="p">,</span> <span class="nx">e</span><span class="p">.</span><span class="nx">val</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">elems</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">m</span> <span class="p">=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">int</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s">&#34;2&#34;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s">&#34;4&#34;</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="s">&#34;8&#34;</span><span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Ao invocar as funções genéricas, muitas vezes
+podemos confiar na inferência de tipos. Observe
+que não precisamos especificar os tipos para <code>K</code>
+e <code>V</code> ao chamar <code>MapKeys</code> - o compilador os
+infere automaticamente.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;chaves m:&#34;</span><span class="p">,</span> <span class="nf">MapKeys</span><span class="p">(</span><span class="nx">m</span><span class="p">))</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>&hellip; embora também possamos especificá-los
+explicitamente.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">_</span> <span class="p">=</span> <span class="nx">MapKeys</span><span class="p">[</span><span class="kt">int</span><span class="p">,</span> <span class="kt">string</span><span class="p">](</span><span class="nx">m</span><span class="p">)</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code">
+            
+          <pre class="chroma">    <span class="nx">lst</span> <span class="o">:=</span> <span class="nx">List</span><span class="p">[</span><span class="kt">int</span><span class="p">]{}</span>
+    <span class="nx">lst</span><span class="p">.</span><span class="nf">Push</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+    <span class="nx">lst</span><span class="p">.</span><span class="nf">Push</span><span class="p">(</span><span class="mi">13</span><span class="p">)</span>
+    <span class="nx">lst</span><span class="p">.</span><span class="nf">Push</span><span class="p">(</span><span class="mi">23</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;lista:&#34;</span><span class="p">,</span> <span class="nx">lst</span><span class="p">.</span><span class="nf">GetAll</span><span class="p">())</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code">
+            
+          <pre class="chroma"><span class="go">chaves: [4 1 2]
+</span><span class="go">lista: [10 13 23]</span></pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      
+      <p class="next">
+        Pr&oacute;ximo exemplo: <a href="erros.html">Erros</a>.
+      </p>
+      
+
+    <p class="footer">
+      por <a href="https://markmcgranaghan.com">Mark McGranaghan</a> e <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/MrErlison/goporexemplos">c&oacute;digo-fonte</a> | <a href="https://github.com/MrErlison/goporexemplos#license">licen&ccedil;a</a>
+    </p>
+
+    </div>
+    <script>
+      var codeLines = [];
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import \"fmt\"\u000A');codeLines.push('func MapKeys[K comparable, V any](m map[K]V) []K {\u000A    r :\u003D make([]K, 0, len(m))\u000A    for k :\u003D range m {\u000A        r \u003D append(r, k)\u000A    }\u000A    return r\u000A}\u000A');codeLines.push('type List[T any] struct {\u000A    head, tail *element[T]\u000A}\u000A');codeLines.push('type element[T any] struct {\u000A    next *element[T]\u000A    val  T\u000A}\u000A');codeLines.push('func (lst *List[T]) Push(v T) {\u000A    if lst.tail \u003D\u003D nil {\u000A        lst.head \u003D \u0026element[T]{val: v}\u000A        lst.tail \u003D lst.head\u000A    } else {\u000A        lst.tail.next \u003D \u0026element[T]{val: v}\u000A        lst.tail \u003D lst.tail.next\u000A    }\u000A}\u000A');codeLines.push('func (lst *List[T]) GetAll() []T {\u000A    var elems []T\u000A    for e :\u003D lst.head; e !\u003D nil; e \u003D e.next {\u000A        elems \u003D append(elems, e.val)\u000A    }\u000A    return elems\u000A}\u000A');codeLines.push('func main() {\u000A    var m \u003D map[int]string{1: \"2\", 2: \"4\", 4: \"8\"}\u000A');codeLines.push('    fmt.Println(\"chaves m:\", MapKeys(m))\u000A');codeLines.push('    _ \u003D MapKeys[int, string](m)\u000A');codeLines.push('    lst :\u003D List[int]{}\u000A    lst.Push(10)\u000A    lst.Push(13)\u000A    lst.Push(23)\u000A    fmt.Println(\"lista:\", lst.GetAll())\u000A}\u000A');codeLines.push('');
+    </script>
+    <script src="site.js" async></script>
+  </body>
+</html>
