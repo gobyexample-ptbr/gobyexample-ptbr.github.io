@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Go por Exemplos: Panic</title>
+    <link rel=stylesheet href="site.css">
+  </head>
+  <script>
+      onkeydown = (e) => {
+          
+          if (e.key == "ArrowLeft") {
+              window.location.href = 'waitgroups.html';
+          }
+          
+          
+      }
+  </script>
+  <body>
+    <div class="example" id="panic">
+      <h2><a href="./">Go por Exemplos</a>: Panic</h2>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p>O <code>panic</code> normalmente significa que algo deu
+inesperadamente errado. Principalmente, nós o usamos
+para falhar rapidamente em erros que não devem ocorrer
+durante a operação normal, ou que não estamos
+preparados para lidar graciosamente.</p>
+
+          </td>
+          <td class="code empty leading">
+            
+          
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            <a href="http://play.golang.org/p/BpoIzCjcPbG"><img title="Executa o c&oacute;digo" src="play.png" class="run" /></a><img title="Copiar o c&oacute;digo" src="clipboard.png" class="copy" />
+          <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kn">import</span> <span class="s">&#34;os&#34;</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Usaremos <code>panic</code> em todo este site para verificar
+se há erros inesperados. Este é o único programa
+no site projetado para entrar em pânico.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nb">panic</span><span class="p">(</span><span class="s">&#34;um problema&#34;</span><span class="p">)</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Um uso comum do <code>panic</code> é abortar se uma função
+retornar um valor de erro que não sabemos como
+(ou queremos) lidar. Aqui está um exemplo de
+<code>panic</code> se recebermos um erro inesperado ao criar
+um novo arquivo.</p>
+
+          </td>
+          <td class="code">
+            
+          <pre class="chroma">
+    <span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Create</span><span class="p">(</span><span class="s">&#34;/tmp/file&#34;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p>Executar este programa fará com que ele entre em falha,
+imprima uma mensagem de erro e traces do goroutines,
+e saia com um status diferente de zero.</p>
+
+          </td>
+          <td class="code empty leading">
+            
+          
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Quando entra em falha pela primeira vez, o programa sai
+sem atingir o resto do código. Se você quiser ver o
+programa tentar criar um arquivo temporário, comente o
+primeiro <code>panic</code>.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+<span class="gp">$</span> go run panic.go
+<span class="go">panic: um problema</span></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="go">goroutine 1 [running]:
+</span><span class="go">main.main()
+</span><span class="go">    /.../panic.go:12 +0x47
+</span><span class="go">...
+</span><span class="go">exit status 2</span></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Observe que, ao contrário de algumas linguagens que
+usam exceções para lidar com muitos erros, no Go é
+idiomático usar valores de retorno que indicam erros
+sempre que possível.</p>
+
+          </td>
+          <td class="code empty">
+            
+          
+          </td>
+        </tr>
+        
+      </table>
+      
+      
+
+    <p class="footer">
+      por <a href="https://markmcgranaghan.com">Mark McGranaghan</a> e <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/MrErlison/goporexemplos">c&oacute;digo-fonte</a> | <a href="https://github.com/MrErlison/goporexemplos#license">licen&ccedil;a</a>
+    </p>
+
+    </div>
+    <script>
+      var codeLines = [];
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import \"os\"\u000A');codeLines.push('func main() {\u000A');codeLines.push('    panic(\"um problema\")\u000A');codeLines.push('    _, err :\u003D os.Create(\"/tmp/file\")\u000A    if err !\u003D nil {\u000A        panic(err)\u000A    }\u000A}\u000A');codeLines.push('');codeLines.push('');codeLines.push('');codeLines.push('');
+    </script>
+    <script src="site.js" async></script>
+  </body>
+</html>
