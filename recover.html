@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Go por Exemplos: Recover</title>
+    <link rel=stylesheet href="site.css">
+  </head>
+  <script>
+      onkeydown = (e) => {
+          
+          if (e.key == "ArrowLeft") {
+              window.location.href = 'defer.html';
+          }
+          
+          
+          if (e.key == "ArrowRight") {
+              window.location.href = 'time.html';
+          }
+          
+      }
+  </script>
+  <body>
+    <div class="example" id="recover">
+      <h2><a href="./">Go por Exemplos</a>: Recover</h2>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p>O Go possibilita a recuperação de um <em>panic</em>,
+usando a função <code>recover</code> integrada. Uma função
+<code>recover</code> pode impedir que um <code>panic</code> aborte o programa
+para continuar com a execução.</p>
+
+          </td>
+          <td class="code empty leading">
+            
+          
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Um exemplo de onde isso pode ser útil: um servidor
+não gostaria de falhar se uma das conexões do cliente
+apresentar um erro crítico. Em vez disso, o servidor
+gostaria de fechar essa conexão e continuar atendendo
+a outros clientes. Na verdade, é isso que a rede/http
+do Go faz por padrão para servidores HTTP.</p>
+
+          </td>
+          <td class="code empty leading">
+            
+          
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            <a href="http://play.golang.org/p/74mkTHOJcAP"><img title="Executa o c&oacute;digo" src="play.png" class="run" /></a><img title="Copiar o c&oacute;digo" src="clipboard.png" class="copy" />
+          <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kd">func</span> <span class="nf">mayPanic</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nb">panic</span><span class="p">(</span><span class="s">&#34;um problema&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>A função <code>recover</code> deve ser chamada dentro de uma
+função <code>defer</code>. Quando a função de fechamento
+entrar em <code>panic</code>, o adiamento será ativado e uma
+chamada de <code>recover</code> dentro dele pegará o <code>panic</code>.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>O valor de retorno do <code>recover</code> é o erro gerado na
+chamada <code>panic</code>.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">    <span class="k">defer</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="nx">r</span> <span class="o">:=</span> <span class="nb">recover</span><span class="p">();</span> <span class="nx">r</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">            <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Recuperado. Erro:\n&#34;</span><span class="p">,</span> <span class="nx">r</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}()</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">    <span class="nf">mayPanic</span><span class="p">()</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Esse código não será executado, porque <code>mayPanic</code>
+entra em <code>panic</code>. A execução das principais
+paradas no ponto do <code>panic</code> é retomado na
+função <code>defer</code>.</p>
+
+          </td>
+          <td class="code">
+            
+          <pre class="chroma">
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Depois mayPanic()&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code">
+            
+          <pre class="chroma"><span class="go">Recuperado. Erro:
+</span><span class="go"> um problema</span></pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      
+      <p class="next">
+        Pr&oacute;ximo exemplo: <a href="time.html">Time</a>.
+      </p>
+      
+
+    <p class="footer">
+      por <a href="https://markmcgranaghan.com">Mark McGranaghan</a> e <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/MrErlison/goporexemplos">c&oacute;digo-fonte</a> | <a href="https://github.com/MrErlison/goporexemplos#license">licen&ccedil;a</a>
+    </p>
+
+    </div>
+    <script>
+      var codeLines = [];
+      codeLines.push('');codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import \"fmt\"\u000A');codeLines.push('func mayPanic() {\u000A    panic(\"um problema\")\u000A}\u000A');codeLines.push('func main() {\u000A');codeLines.push('    defer func() {\u000A        if r :\u003D recover(); r !\u003D nil {\u000A');codeLines.push('            fmt.Println(\"Recuperado. Erro:\\n\", r)\u000A        }\u000A    }()\u000A');codeLines.push('    mayPanic()\u000A');codeLines.push('    fmt.Println(\"Depois mayPanic()\")\u000A}\u000A');codeLines.push('');
+    </script>
+    <script src="site.js" async></script>
+  </body>
+</html>
