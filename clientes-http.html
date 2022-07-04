@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Go por Exemplos: Clientes HTTP</title>
+    <link rel=stylesheet href="site.css">
+  </head>
+  <script>
+      onkeydown = (e) => {
+          
+          if (e.key == "ArrowLeft") {
+              window.location.href = 'escrevendo-arquivos.html';
+          }
+          
+          
+          if (e.key == "ArrowRight") {
+              window.location.href = 'exit.html';
+          }
+          
+      }
+  </script>
+  <body>
+    <div class="example" id="clientes-http">
+      <h2><a href="./">Go por Exemplos</a>: Clientes HTTP</h2>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            <p>A biblioteca padrão do Go vem com um excelente
+suporte para clientes e servidores HTTP no
+pacote <code>net/http</code>. Nesse exemplo, vamos usá-lo
+para simples requisições HTTP.</p>
+
+          </td>
+          <td class="code leading">
+            <a href="http://play.golang.org/p/ureX14duRTc"><img title="Executa o c&oacute;digo" src="play.png" class="run" /></a><img title="Copiar o c&oacute;digo" src="clipboard.png" class="copy" />
+          <pre class="chroma">
+<span class="kn">package</span> <span class="nx">main</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&#34;bufio&#34;</span>
+    <span class="s">&#34;fmt&#34;</span>
+    <span class="s">&#34;net/http&#34;</span>
+<span class="p">)</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Solicita HTTP GET para um servidor. <code>http.Get</code> é
+um atalho conveniente para criar um objeto</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="c1">//`http.Client` e chamar seu método `Get`; ele usa
+</span></pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>o objeto <code>http.DefaultClient</code>, que possui
+padrões de configurações úteis.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">resp</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">http</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="s">&#34;http://goporexemplos.github.io/&#34;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">defer</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">Body</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Exibe o status da resposta HTTP.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Response status:&#34;</span><span class="p">,</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">Status</span><span class="p">)</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            <p>Exibe as primeiras 5 linhas do corpo da resposta.</p>
+
+          </td>
+          <td class="code leading">
+            
+          <pre class="chroma">
+    <span class="nx">scanner</span> <span class="o">:=</span> <span class="nx">bufio</span><span class="p">.</span><span class="nf">NewScanner</span><span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">Body</span><span class="p">)</span>
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">scanner</span><span class="p">.</span><span class="nf">Scan</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">scanner</span><span class="p">.</span><span class="nf">Text</span><span class="p">())</span>
+    <span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code">
+            
+          <pre class="chroma">    <span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">scanner</span><span class="p">.</span><span class="nf">Err</span><span class="p">();</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      <table>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
+          <td class="code">
+            
+          <pre class="chroma"><span class="gp">$</span> go run clientes-http.go
+<span class="go">Response status: 200 OK
+</span><span class="go">&lt;!DOCTYPE html&gt;
+</span><span class="go">&lt;html&gt;
+</span><span class="go">  &lt;head&gt;
+</span><span class="go">    &lt;meta charset=&#34;utf-8&#34;&gt;
+</span><span class="go">    &lt;title&gt;Go por Exemplo&lt;/title&gt;</span></pre>
+          </td>
+        </tr>
+        
+      </table>
+      
+      
+      <p class="next">
+        Pr&oacute;ximo exemplo: <a href="exit.html">Exit</a>.
+      </p>
+      
+
+    <p class="footer">
+      por <a href="https://markmcgranaghan.com">Mark McGranaghan</a> e <a href="https://eli.thegreenplace.net">Eli Bendersky</a> | <a href="https://github.com/MrErlison/goporexemplos">c&oacute;digo-fonte</a> | <a href="https://github.com/MrErlison/goporexemplos#license">licen&ccedil;a</a>
+    </p>
+
+    </div>
+    <script>
+      var codeLines = [];
+      codeLines.push('package main\u000A');codeLines.push('import (\u000A    \"bufio\"\u000A    \"fmt\"\u000A    \"net/http\"\u000A)\u000A');codeLines.push('func main() {\u000A');codeLines.push('    //`http.Client` e chamar seu método `Get`; ele usa\u000A');codeLines.push('    resp, err :\u003D http.Get(\"http://goporexemplos.github.io/\")\u000A    if err !\u003D nil {\u000A        panic(err)\u000A    }\u000A    defer resp.Body.Close()\u000A');codeLines.push('    fmt.Println(\"Response status:\", resp.Status)\u000A');codeLines.push('    scanner :\u003D bufio.NewScanner(resp.Body)\u000A    for i :\u003D 0; scanner.Scan() \u0026\u0026 i \u003C 5; i++ {\u000A        fmt.Println(scanner.Text())\u000A    }\u000A');codeLines.push('    if err :\u003D scanner.Err(); err !\u003D nil {\u000A        panic(err)\u000A    }\u000A}\u000A');codeLines.push('');
+    </script>
+    <script src="site.js" async></script>
+  </body>
+</html>
