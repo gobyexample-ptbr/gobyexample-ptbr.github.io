@@ -33,10 +33,19 @@ pacote <code>net/http</code>. Nesse exemplo, vamos usá-lo
 para simples requisições HTTP.</p>
 
           </td>
+          <td class="code empty leading">
+            
+          
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
           <td class="code leading">
-            <a href="http://play.golang.org/p/5y_h0vbOqpq"><img title="Executa o c&oacute;digo" src="play.png" class="run" /></a><img title="Copiar o c&oacute;digo" src="clipboard.png" class="copy" />
-          <pre class="chroma">
-<span class="kn">package</span> <span class="nx">main</span>
+            <a href="http://play.golang.org/p/td8jNbYK3Vd"><img title="Executa o c&oacute;digo" src="play.png" class="run" /></a><img title="Copiar o c&oacute;digo" src="clipboard.png" class="copy" />
+          <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
 </pre>
           </td>
         </tr>
@@ -166,7 +175,7 @@ padrões de configurações úteis.</p>
     </div>
     <script>
       var codeLines = [];
-      codeLines.push('package main\u000A');codeLines.push('import (\u000A    \"bufio\"\u000A    \"fmt\"\u000A    \"net/http\"\u000A)\u000A');codeLines.push('func main() {\u000A');codeLines.push('    resp, err :\u003D http.Get(\"http://goporexemplos.github.io/\")\u000A    if err !\u003D nil {\u000A        panic(err)\u000A    }\u000A    defer resp.Body.Close()\u000A');codeLines.push('    fmt.Println(\"Response status:\", resp.Status)\u000A');codeLines.push('    scanner :\u003D bufio.NewScanner(resp.Body)\u000A    for i :\u003D 0; scanner.Scan() \u0026\u0026 i \u003C 5; i++ {\u000A        fmt.Println(scanner.Text())\u000A    }\u000A');codeLines.push('    if err :\u003D scanner.Err(); err !\u003D nil {\u000A        panic(err)\u000A    }\u000A}\u000A');codeLines.push('');
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import (\u000A    \"bufio\"\u000A    \"fmt\"\u000A    \"net/http\"\u000A)\u000A');codeLines.push('func main() {\u000A');codeLines.push('    resp, err :\u003D http.Get(\"http://goporexemplos.github.io/\")\u000A    if err !\u003D nil {\u000A        panic(err)\u000A    }\u000A    defer resp.Body.Close()\u000A');codeLines.push('    fmt.Println(\"Response status:\", resp.Status)\u000A');codeLines.push('    scanner :\u003D bufio.NewScanner(resp.Body)\u000A    for i :\u003D 0; scanner.Scan() \u0026\u0026 i \u003C 5; i++ {\u000A        fmt.Println(scanner.Text())\u000A    }\u000A');codeLines.push('    if err :\u003D scanner.Err(); err !\u003D nil {\u000A        panic(err)\u000A    }\u000A}\u000A');codeLines.push('');
     </script>
     <script src="site.js" async></script>
   </body>

@@ -33,10 +33,19 @@ cláusula <code>default</code> para implementar envios, recebimentos
 e até mesmo seleções multidirecionais sem bloqueio.</p>
 
           </td>
+          <td class="code empty leading">
+            
+          
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
           <td class="code leading">
-            <a href="http://play.golang.org/p/84vbKkwFpyf"><img title="Executa o c&oacute;digo" src="play.png" class="run" /></a><img title="Copiar o c&oacute;digo" src="clipboard.png" class="copy" />
-          <pre class="chroma">
-<span class="kn">package</span> <span class="nx">main</span>
+            <a href="http://play.golang.org/p/JDTBOZneRMt"><img title="Executa o c&oacute;digo" src="play.png" class="run" /></a><img title="Copiar o c&oacute;digo" src="clipboard.png" class="copy" />
+          <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
 </pre>
           </td>
         </tr>
@@ -164,7 +173,7 @@ recebimentos em mensagens e sinais.</p>
     </div>
     <script>
       var codeLines = [];
-      codeLines.push('package main\u000A');codeLines.push('import \"fmt\"\u000A');codeLines.push('func main() {\u000A    messages :\u003D make(chan string)\u000A    signals :\u003D make(chan bool)\u000A');codeLines.push('    select {\u000A    case msg :\u003D \u003C-messages:\u000A        fmt.Println(\"mensagem recebida\", msg)\u000A    default:\u000A        fmt.Println(\"nenhuma mensagem recebida\")\u000A    }\u000A');codeLines.push('    msg :\u003D \"hi\"\u000A    select {\u000A    case messages \u003C- msg:\u000A        fmt.Println(\"mensagem enviada\", msg)\u000A    default:\u000A        fmt.Println(\"nenhuma mensagem enviada\")\u000A    }\u000A');codeLines.push('    select {\u000A    case msg :\u003D \u003C-messages:\u000A        fmt.Println(\"mensagem recebida\", msg)\u000A    case sig :\u003D \u003C-signals:\u000A        fmt.Println(\"sinal recebido\", sig)\u000A    default:\u000A        fmt.Println(\"nenhuma atividade\")\u000A    }\u000A}\u000A');codeLines.push('');
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import \"fmt\"\u000A');codeLines.push('func main() {\u000A    messages :\u003D make(chan string)\u000A    signals :\u003D make(chan bool)\u000A');codeLines.push('    select {\u000A    case msg :\u003D \u003C-messages:\u000A        fmt.Println(\"mensagem recebida\", msg)\u000A    default:\u000A        fmt.Println(\"nenhuma mensagem recebida\")\u000A    }\u000A');codeLines.push('    msg :\u003D \"hi\"\u000A    select {\u000A    case messages \u003C- msg:\u000A        fmt.Println(\"mensagem enviada\", msg)\u000A    default:\u000A        fmt.Println(\"nenhuma mensagem enviada\")\u000A    }\u000A');codeLines.push('    select {\u000A    case msg :\u003D \u003C-messages:\u000A        fmt.Println(\"mensagem recebida\", msg)\u000A    case sig :\u003D \u003C-signals:\u000A        fmt.Println(\"sinal recebido\", sig)\u000A    default:\u000A        fmt.Println(\"nenhuma atividade\")\u000A    }\u000A}\u000A');codeLines.push('');
     </script>
     <script src="site.js" async></script>
   </body>

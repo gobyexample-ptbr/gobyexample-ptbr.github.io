@@ -32,10 +32,19 @@ operações de canal. Combinar goroutines e canais com
 <em>select</em> é um recurso poderoso do Go.</p>
 
           </td>
+          <td class="code empty leading">
+            
+          
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="docs">
+            
+          </td>
           <td class="code leading">
-            <a href="http://play.golang.org/p/zHLBHYgkzR3"><img title="Executa o c&oacute;digo" src="play.png" class="run" /></a><img title="Copiar o c&oacute;digo" src="clipboard.png" class="copy" />
-          <pre class="chroma">
-<span class="kn">package</span> <span class="nx">main</span>
+            <a href="http://play.golang.org/p/YvB3S8MaWsU"><img title="Executa o c&oacute;digo" src="play.png" class="run" /></a><img title="Copiar o c&oacute;digo" src="clipboard.png" class="copy" />
+          <pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
 </pre>
           </td>
         </tr>
@@ -173,7 +182,7 @@ executados simultaneamente.</p>
     </div>
     <script>
       var codeLines = [];
-      codeLines.push('package main\u000A');codeLines.push('import (\u000A    \"fmt\"\u000A    \"time\"\u000A)\u000A');codeLines.push('func main() {\u000A');codeLines.push('    c1 :\u003D make(chan string)\u000A    c2 :\u003D make(chan string)\u000A');codeLines.push('    go func() {\u000A        time.Sleep(1 * time.Second)\u000A        c1 \u003C- \"um\"\u000A    }()\u000A    go func() {\u000A        time.Sleep(2 * time.Second)\u000A        c2 \u003C- \"dois\"\u000A    }()\u000A');codeLines.push('    for i :\u003D 0; i \u003C 2; i++ {\u000A        select {\u000A        case msg1 :\u003D \u003C-c1:\u000A            fmt.Println(\"recebido\", msg1)\u000A        case msg2 :\u003D \u003C-c2:\u000A            fmt.Println(\"recebido\", msg2)\u000A        }\u000A    }\u000A}\u000A');codeLines.push('');codeLines.push('');
+      codeLines.push('');codeLines.push('package main\u000A');codeLines.push('import (\u000A    \"fmt\"\u000A    \"time\"\u000A)\u000A');codeLines.push('func main() {\u000A');codeLines.push('    c1 :\u003D make(chan string)\u000A    c2 :\u003D make(chan string)\u000A');codeLines.push('    go func() {\u000A        time.Sleep(1 * time.Second)\u000A        c1 \u003C- \"um\"\u000A    }()\u000A    go func() {\u000A        time.Sleep(2 * time.Second)\u000A        c2 \u003C- \"dois\"\u000A    }()\u000A');codeLines.push('    for i :\u003D 0; i \u003C 2; i++ {\u000A        select {\u000A        case msg1 :\u003D \u003C-c1:\u000A            fmt.Println(\"recebido\", msg1)\u000A        case msg2 :\u003D \u003C-c2:\u000A            fmt.Println(\"recebido\", msg2)\u000A        }\u000A    }\u000A}\u000A');codeLines.push('');codeLines.push('');
     </script>
     <script src="site.js" async></script>
   </body>
